@@ -1,0 +1,58 @@
+
+public class Driver implements DriverInterface {
+
+	@Override
+	public QueueInterface<String> createQueue(QueueType queueType, QueueTestType queueTestType) {
+		// TODO Auto-generated method stub
+		
+		QueueInterface<String> qi = null;
+		
+		switch(queueType) {
+			case ArrayBasedQueue:
+				qi = new  ArrayBasedQueue<String>();
+					switch(queueTestType) {
+					case Enqueue:
+					
+						return qi;
+					case Dequeue :
+						ArrayBasedQueue<String> dequi = new  ArrayBasedQueue<String>();
+						
+						for(int i = 1; i <= 10000; i++) {
+							dequi.enqueue("String " + i);
+						}
+						return dequi;
+			}
+			break;
+			case LinkedQueue: 
+				qi = new LinkedQueue<String>();
+			break;
+		}
+		
+		return qi;
+	}
+
+	@Override
+	public StackInterface<String> createStack(StackType stackType, StackTestType stackTestType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TestTimes runQueueTestCase(QueueType queueType, QueueTestType queueTestType, int numberOfTimes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TestTimes runStackTestCase(StackType stackType, StackTestType stackTestType, int numberOfTimes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	public static void main(String[] args) {
+	
+	}
+
+}

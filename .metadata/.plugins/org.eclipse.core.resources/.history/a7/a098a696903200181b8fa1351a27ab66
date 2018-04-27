@@ -1,0 +1,144 @@
+import org.omg.SendingContext.RunTime;
+
+public class TestTimes implements TestTimesInterface {
+	
+	private double [] testTimes = new double [10]; 
+	private int index = 0;
+	
+  @Override
+	public void addTestTime(long runTime) {
+
+	
+		
+		if (index < testTimes.length ) {
+			testTimes[index++] = runTime;
+		} else {
+			for(int i = 0; i< testTimes.length-1; i++) {
+				testTimes[i] = testTimes[i+1];
+			}
+			testTimes[9]= runTime;
+		}
+	}
+  
+
+	@Override
+	public double getAverageTestTime() {
+		
+		double counter = 0;
+		double avg = 0;
+		if (this.index <= 10) {
+		for(int i = 0; i < this.index; i++) 
+			counter = testTimes[i] + counter;
+		}
+		if(counter == 0) {
+					avg = 0;
+		}else { 
+			avg = counter/this.index;
+		}
+			
+		return avg;	
+		}
+			
+	
+  
+	@Override
+	public double getLastTestTime() {
+		
+		if(this.index > 0) {
+			return testTimes[this.index-1];	
+		}
+		else {return 0;
+		}
+		
+	}
+
+	@Override
+	public double[] getTestTimes() {
+		return testTimes;
+	}
+
+	@Override
+	public void resetTestTimes() {
+		for (int i =0; i < testTimes.length; i++) {
+			this.testTimes[i] = 0;
+		}
+		this.index = 0;
+	}
+
+
+	@Override
+	public TimeUnits getTimeUnits() {
+		// TODO Auto-generated method stub
+	TimeUnits tu = (TimeUnits) getTimeUnits();
+		return tu;
+	}
+
+
+	@Override
+	public void setTimeUnits(TimeUnits timeUnits) {
+		// TODO Auto-generated method stub
+		switch(timeUnits) {
+		case Seconds:
+			TimeUnits su = (TimeUnits) TimeUnits.Seconds;
+			break;
+		case MilliSeconds:
+			TimeUnits msu = (TimeUnits) TimeUnits.MilliSeconds;
+			break;
+		case MicroSeconds:
+			TimeUnits mcu = (TimeUnits) TimeUnits.MilliSeconds;
+			break;
+		case NanoSeconds:
+			TimeUnits nsu = (TimeUnits) TimeUnits.MilliSeconds;
+			break;
+			
+		default:
+			break;
+			
+		
+		}
+		
+	}
+
+
+	@Override
+	public MemoryUnits getMemoryUnits() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void setMemoryUnits(MemoryUnits memoryUnits) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
+
+
+	@Override
+	public double getLastMemoryUsage() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	
+
+
+	@Override
+	public double[] getMemoryUsages() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public double getAverageMemoryUsage() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+}

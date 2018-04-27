@@ -1,0 +1,65 @@
+package com.homework;
+
+public class TestTimes implements TestTimesInterface {
+	
+	private long [] arrayTest = new long [10]; 
+	
+  @Override
+	public void addTestTime(long testTime) {
+
+		int index = 0;
+		
+		if (index < arrayTest.length ) {
+			arrayTest[index++] = testTime;
+		} else {
+			for(int i = 0; i< arrayTest.length-1; i++) {
+				arrayTest[i] = arrayTest[i+1];
+			}
+			arrayTest[9]= testTime;
+		}
+	}
+  
+
+	@Override
+	public double getAverageTestTime() {
+		
+		double sum = 0; 
+		int counter = 0;
+		for(int i = 0; i < arrayTest.length;i++) {
+			if(arrayTest[i] != 0) {
+				sum = sum + arrayTest[i];
+				counter = counter++;
+				break;
+			}
+			
+		}
+	/*	//if() {
+		 double avg = sum / counter;
+		
+		
+		return avg;
+		}else {return 0;}
+		
+ */ return 0;
+	}
+  
+	@Override
+	public long getLastTestTime() {
+		
+		
+		
+		return 0;
+	}
+
+	@Override
+	public long[] getTestTimes() {
+		return null;
+	}
+
+	@Override
+	public void resetTestTimes() {
+		
+	}
+
+
+}

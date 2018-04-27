@@ -1,0 +1,57 @@
+
+public class ArrayBasedList <I extends BetterArray > implements ListInterface  {
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return super.size();
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return super.isEmpty();
+	}
+
+	@Override
+	public void add(Comparable element) {
+		// TODO Auto-generated method stub
+		super.addElement(element);
+	}
+
+	@Override
+	public boolean add(Comparable element, int index) {
+		// TODO Auto-generated method stub
+		return super.insertElement(element, index);
+	}
+
+	@Override
+	public void addSorted(Comparable element) {
+		// TODO Auto-generated method stub
+		super.insertElementSorted(element);
+	}
+
+	@Override
+	public Comparable get(int index) {
+		// TODO Auto-generated method stub
+		return super.getElement(index);
+	}
+
+	@Override
+	public Comparable replace(Comparable element, int index) {
+		// TODO Auto-generated method stub
+		return super.replaceElement(element, index);
+	}
+
+	@Override
+	public boolean remove (int index) {
+		return super.removeElement(index);
+	}
+
+	@Override
+	public void removeAll() {
+		// TODO Auto-generated method stub
+		super.resetArray();
+	}
+
+}

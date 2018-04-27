@@ -1,0 +1,75 @@
+
+public class Driver implements DriverInterface {
+
+	Driver d = new Driver();
+	
+
+	
+	@Override 
+	public ListInterface<Integer> createList(ListType listType, TestType forTestType) {
+
+		ListInterface<Integer> li;
+		
+		switch(listType) {
+			case LinkedList:
+				li = new LinkedList<Integer>();
+				break;
+			case ArrayBasedList:
+				li = new ArrayBasedList<Integer>();
+				break;
+		}
+			
+		switch (forTestType) {
+		case AddSortedEven:
+			li = initializeList(li, 2, 10000, 2);
+			break;
+		case RemoveAllEven:
+			li = initializeList(li,1,10000,2);
+			break;
+		case AddSortedOdd:
+			break;
+		case RemoveAllOdd:
+			li = initializeList(li,1,10000,2);
+			break;
+			
+		case AddAll:
+			break;
+			
+		case AddAllAtIndexZero:
+			break;
+		
+		}
+		
+		
+		return li;
+	}
+
+	@Override
+	public ListInterface<Integer> initializeList(ListInterface<Integer> list, int firstNumber, int lastNumber,
+			int increment) {
+		
+		
+		for(int i = firstNumber; i < lastNumber; increment++) {
+			
+		}
+		
+		return list;
+	}
+
+	@Override
+	public double memoryUsage() {
+		double t;
+		Runtime rt = Runtime.getRuntime();
+		double tM = (double) rt.totalMemory();
+		double fM = (double) rt.freeMemory();
+			t = tM-fM;
+		return t/1000;
+	}
+
+	@Override
+	public TestTimes runTestCase(ListType listType, TestType testType, int numberOfTimes) {
+		//This is were the methods addSorted and removeall will be written.
+		return null;
+	}
+
+}

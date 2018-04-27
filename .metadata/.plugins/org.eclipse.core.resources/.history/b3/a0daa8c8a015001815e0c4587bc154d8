@@ -1,0 +1,47 @@
+package com.homeworkTwo;
+import java.util.Random;
+
+public class Driver implements DriverInterface {
+
+	Random rand = new Random();
+	
+	@Override
+	public Integer[] createArray(ArrayType arrayType, int arraySize) {
+	
+		
+		
+		double [] arrayNew = new double [arraySize];
+		
+		switch (arrayType) {
+			case Equal : 
+				for(int i = 0; i < arrayNew.length; i++)
+					arrayNew[i] = arrayNew[5];
+			case Random : 
+				int randNum = rand.nextInt(1000);
+				for (int i = 0; i < arrayNew.length; i++)
+					arrayNew[i] = arrayNew[randNum];
+			case Increasing : 
+				for(int i= 0; i < arrayNew.length; i++)
+					arrayNew[i] = arrayNew[i];
+			case Decreasing :
+				for(int i = arrayNew.length; i <= 0; i--)
+					arrayNew[i] = arrayNew[i];
+			case IncreasingAndRandom :
+				for (int i= ;)
+				
+		}
+		
+		return null;
+	}
+
+	@Override
+	public TestTimes runSort(SortType sortType, ArrayType arrayType, int arraySize, int numberOfTimes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+	
+	
+}

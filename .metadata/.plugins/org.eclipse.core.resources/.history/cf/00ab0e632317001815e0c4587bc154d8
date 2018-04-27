@@ -1,0 +1,15 @@
+package com.homeworkTwo;
+
+
+public class InsertionSort implements SortInterface {
+
+	@Override
+	public void sort(Integer[] arrayToSort) {
+		// TODO Auto-generated method stub
+		Integer [] a = arrayToSort;
+		for(int i = 1; i < a.length; i++) 
+			 key = a[i];
+			 j = i-1;
+			
+	}
+}

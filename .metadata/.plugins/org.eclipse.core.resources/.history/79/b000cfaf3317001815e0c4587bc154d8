@@ -1,0 +1,38 @@
+package com.homeworkTwo;
+
+public class SelectionSort extends TestTimes implements SortInterface {
+
+	@Override
+	public void sort(Integer[] arrayToSort) {
+		// TODO Auto-generated method stub
+		long startTime = System.nanoTime();
+		
+		Integer[] a = arrayToSort;
+		int i, j, min, minI, temp ;
+		
+		for(i = 0; i < a.length; i++ ) {
+			min = a[i];
+			minI = i;
+			
+			for(j = i; j < a.length; i++)
+				if(a[j] > min) {
+					min = a[j];
+					minI = j;
+				}
+					
+
+			if(min < a[i]) {
+				temp = a[i];
+				a[i] = a[minI];
+				a[minI] = temp;
+				}
+		}
+	
+		
+		long endTime = System.nanoTime();
+		long testTime = startTime - endTime;
+		
+		addTestTime(testTime);
+	}
+
+}

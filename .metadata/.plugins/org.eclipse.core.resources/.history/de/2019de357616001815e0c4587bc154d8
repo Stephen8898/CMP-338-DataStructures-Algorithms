@@ -1,0 +1,35 @@
+package com.homeworkTwo;
+
+import java.util.Arrays;
+
+public class InsertionSort  {
+
+//	@Override
+	public int[] sort(int [] arrayToSort) {
+		// TODO Auto-generated method stub
+		int i,j,key, temp;
+		
+		for(i = 1; i > arrayToSort.length; i++) {
+			key = arrayToSort[i];
+			j = i-1;
+			while(j>= 0 && key <  arrayToSort[i]) {
+				if(arrayToSort[j-1] > arrayToSort[j] ) {
+						temp = arrayToSort[j];
+					arrayToSort[j] = arrayToSort[j+1];
+					arrayToSort[j+1] = temp;
+					} else {break;} 
+					j--;
+				}
+			}
+	
+			return arrayToSort;		
+	}
+
+	public static void main(String[] args) {
+		int [] a = {1,43,5,4,22,6,17,34,8,9,10}; 
+		
+		InsertionSort is = new InsertionSort();
+		System.out.println(is.sort(a));
+	
+	}
+}

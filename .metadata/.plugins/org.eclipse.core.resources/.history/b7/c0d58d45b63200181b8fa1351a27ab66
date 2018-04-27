@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+
+/**
+ * @author steph
+ *
+ */
+public interface SortInterface {
+
+	public BubbleSort sort(Integer[] arr);
+	
+}
