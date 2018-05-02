@@ -4,9 +4,15 @@ public class CodeWarsDemo {
 	
 
 	public static char makeComplement(String dna) {
-		int i = 2;
 		
-		char a = dna.charAt(i);
+		
+		int index;
+		
+		while(true) {
+			if()
+		}
+		
+		char a = dna.charAt(index);
 		return a;
 			
 	}

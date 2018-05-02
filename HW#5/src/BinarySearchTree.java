@@ -1,7 +1,9 @@
 import java.util.Iterator;
 
+
 public class BinarySearchTree <K extends Comparable<? super K>, V> implements Iterable {
 
+	
 	private TreeNode<K,V> root;
 	
 	public BinarySearchTree() {
@@ -57,6 +59,28 @@ public class BinarySearchTree <K extends Comparable<? super K>, V> implements It
 	
 	public void delete(K key) {
 		this.root = deleteItem(this.root, key);
+	}
+	
+	public int height() {
+		return this.treeHeight(this.root);
+	
+	}
+	
+	public boolean isBalanced() {
+		return this.treeIsBalanced(this.root);
+	}
+	
+	public void balance() {
+		if(!this.isBalanced()) {
+			TreeIterator<K,V> iter = this.iterator();
+			iter.setInorder();
+			Object[] arr = new Object[iter.size()];
+			int index =0;
+			while(iter.hasNext()) {
+				arr[index] = iter.next();
+			}
+			this.root = this.balancedTree((TreeItem[]) arr, 0, arr.length-1); 
+		}
 	}
 	
 /******************************************************************************/	
@@ -150,5 +174,42 @@ public class BinarySearchTree <K extends Comparable<? super K>, V> implements It
 			node.setLeftChild(deleteSuccessorNode(node.getLeftChild()));
 			return node;
 		}
+	}
+	
+	//////////////////////////////////////////////////////////
+	
+	private int treeHeight(TreeNode<K,V> node) {
+		if(node == null) {
+			return 0;
+		} else {
+			int rHeight = treeHeight(node.getRightChild());
+			int lHeight = treeHeight(node.getLeftChild());
+			int height = Math.max(rHeight, lHeight)+1;
+			return height;
+		}
+	}
+	
+	private boolean  treeIsBalanced (TreeNode<K,V> node) {
+		if (node == null) {
+			return true;	
+		} else {
+			int rHeight = treeHeight(node.getRightChild());
+			int lHeight = treeHeight(node.getLeftChild());
+			
+			boolean balanced = (Math.abs(lHeight-rHeight) <= 1) && (treeIsBalanced(node.getLeftChild()) && treeIsBalanced(node.getRightChild()));
+			
+			return balanced;
+		}
+	}
+	private TreeNode balancedTree(TreeItem[] arr,int first, int last) {
+		TreeNode node = null;
+		
+		if(first > last) {
+			int mid = (first + last) /2;
+			node = new TreeNode (arr[mid]);
+			node.setLeftChild(balancedTree(arr,0,mid-1));
+			node.setRightChild(balancedTree(arr,mid+1,last));
+		}
+		return node;
 	}
 }
