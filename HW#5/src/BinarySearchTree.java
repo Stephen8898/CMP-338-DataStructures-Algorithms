@@ -1,6 +1,7 @@
 import java.util.Iterator;
 
 
+@SuppressWarnings("unchecked")
 public class BinarySearchTree <K extends Comparable<? super K>, V> implements Iterable {
 
 	
@@ -71,16 +72,17 @@ public class BinarySearchTree <K extends Comparable<? super K>, V> implements It
 	}
 	
 	public void balance() {
-		if(!this.isBalanced()) {
-			TreeIterator<K,V> iter = this.iterator();
-			iter.setInorder();
-			Object[] arr = new Object[iter.size()];
-			int index =0;
-			while(iter.hasNext()) {
-				arr[index] = iter.next();
-			}
-			this.root = this.balancedTree((TreeItem[]) arr, 0, arr.length-1); 
-		}
+		// generate new tree iterator
+				TreeIterator<K, V> iter = new TreeIterator<K, V>((this));
+				iter.setInorder();
+				
+				int count = iter.size();
+
+				TreeItem[] arr = new TreeItem[count];
+				
+				for (int i = 0; i < count; i++)
+					arr[i] = iter.next();
+				root = balancedTree(arr, 0, count - 1);
 	}
 	
 /******************************************************************************/	
@@ -201,15 +203,23 @@ public class BinarySearchTree <K extends Comparable<? super K>, V> implements It
 			return balanced;
 		}
 	}
-	private TreeNode balancedTree(TreeItem[] arr,int first, int last) {
-		TreeNode node = null;
-		
-		if(first > last) {
-			int mid = (first + last) /2;
-			node = new TreeNode (arr[mid]);
-			node.setLeftChild(balancedTree(arr,0,mid-1));
-			node.setRightChild(balancedTree(arr,mid+1,last));
-		}
-		return node;
-	}
+
+	private TreeNode balancedTree(@SuppressWarnings("rawtypes") TreeItem[] arr,int first, int last) {
+
+		 if (first > last) {
+	            return null;
+	        }else {
+	            
+	            int mid = (first + last) / 2;
+	        
+	            TreeItem<K,V> item = (TreeItem<K,V>) arr[mid];
+	            
+	            TreeNode<K,V> node =  new TreeNode<K,V>(item);
+	    
+	            node.setLeftChild(balancedTree(arr, first, mid - 1 ));
+	            node.setRightChild(balancedTree(arr, mid + 1, last));
+	            
+	        return node;
+	        }
+	    }
 }
