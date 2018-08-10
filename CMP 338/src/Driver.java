@@ -1,4 +1,4 @@
-
+import java.util.Arrays;
 
 public class Driver implements DriverInterface {
 
@@ -103,16 +103,58 @@ public class Driver implements DriverInterface {
 	return t;
 	}
 	
-	
-	public static void main(String[] args) {
-		Driver d = new Driver();
+	static TestTimes tt = new TestTimes();
+	static Driver d = new Driver();
+	public TestTimes runCases() {
+		
 		TestTimes tt = new TestTimes();
+		System.out.println(Arrays.toString(tt.getTestTimes()) + "------"+ tt.getAverageTestTime());
+		return tt;
+	}
+	
+	public static void run() {
+		
+		TestType  tType [] = {TestType.AddSortedOdd, TestType.AddSortedEven, TestType.AddAll, TestType.AddAllAtIndexZero, TestType.RemoveAllEven, TestType.RemoveAllOdd};
+		for(TestType t : tType ) {
+			
+			System.out.println(Arrays.toString(d.runTestCase(ListType.ArrayBasedList, t, 10).getTestTimes()) + "\n AverageTime: "+ d.runTestCase(ListType.ArrayBasedList, t, 10).getAverageTestTime() + "\n MemoryUsage: " +
+			d.memoryUsage());
+			//System.out.println(Arrays.toString(d.runTestCase(ListType.LinkedList, t, 10).getTestTimes()));
+		}
+	
+	}
+	public static void runList() {
+	
+		TestType  tType [] = {TestType.AddSortedOdd, TestType.AddSortedEven, TestType.AddAll, TestType.AddAllAtIndexZero, TestType.RemoveAllEven, TestType.RemoveAllOdd};
+		for(TestType t : tType ) {
+			
+			System.out.println(Arrays.toString(d.runTestCase(ListType.LinkedList, t, 10).getTestTimes()) + "\n AverageTime: "+ d.runTestCase(ListType.LinkedList, t, 10).getAverageTestTime() + "\n MemoryUsage: " +
+			d.memoryUsage());
+		}
+	
+	}
+	 
+	public static void main(String[] args) {
 		
 		
-		
-	System.out.print(d.runTestCase(ListType.ArrayBasedList, TestType.AddSortedEven, 10) );
-
+	//d.runTestCase(ListType.ArrayBasedList, d.run(), 10).getTestTimes();
+	//d.runTestCase(ListType.LinkedList, d.run(), 10).getTestTimes();
+	System.out.println("ArrayList--------------------------------------- ");
+	d.run();
+	System.out.println("\n LinkedList----------------------------------------------- \n");
+	d.runList();
+	
+    //d.runTestCase(ListType.ArrayBasedList, TestType.AddSortedEven, 10).getAverageTestTime();
 	//System.out.print(tt.getAverageTestTime());
 	
+		//BinarySearch driver = new BinarySearch();
+		
+	
+	
+						
+	//System.out.println(Arrays.toString(tt.getTestTimes()));
+//	System.out.println(tt.getAverageTestTime());
+//	System.out.println(tt.getLastTestTime());
+
 	}
 }

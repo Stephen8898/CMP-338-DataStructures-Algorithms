@@ -6,19 +6,16 @@ public class SelectionSort {
 	
 	public void sort(int[] num) {
 		int i,j,temp,min=0;
-		for(i = 0; i< num.length-1; i++) {
+		for(i = 0; i< num.length-1; i++) { 
 			min = i;
 		for(j = i + 1; j < num.length; j++) {
 			if (num[j] < num[min]) {
 				min = j;
 			}
-			
-			if(min != j) {
-				temp = num[i];
-				num[i] = num[min];
-				num[min] = temp;
-			}
 		}
+		temp = num[i];
+		num[i] = num[min];
+		num[min] = temp;
 	}
 		System.out.println(Arrays.toString(num));
 	}

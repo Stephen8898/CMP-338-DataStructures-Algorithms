@@ -6,6 +6,7 @@ public class LinkedList <I extends Comparable <? super I>> implements ListInterf
 	
 	private int numOfEntries;
 	
+	
 	public LinkedList() {
 		 this.head = null;
 		 this.tail = null;
@@ -81,11 +82,10 @@ public class LinkedList <I extends Comparable <? super I>> implements ListInterf
 	public void addSorted(I element) {
 		// TODO Auto-generated method stub
 		LinkedListNode<I> newNode = new LinkedListNode<I>(element);
-			
+	
 		if(this.isEmpty()) {
 			// empty list
-			this.head = newNode;
-			this.tail = newNode;
+			this.add(element);
 		}else if (element.compareTo(head.getData()) < 0){
 			// element is smaller than head element replace head
 			newNode.setNext(this.head);
@@ -99,14 +99,16 @@ public class LinkedList <I extends Comparable <? super I>> implements ListInterf
 			LinkedListNode<I> curNode = head;
 			LinkedListNode<I> prevNode = null;
 			while (element.compareTo(curNode.getData()) > 0) {
+				prevNode = curNode;
 				curNode = curNode.getNext();
 			}
-			prevNode = curNode;
-			curNode = curNode.getNext();
-			newNode.setNext(curNode);
-			prevNode.setNext(newNode);
-		
-			
+			if (curNode == head) {
+				newNode.setNext(head);
+				head = newNode;
+			} else {
+				newNode.setNext(curNode);
+				prevNode.setNext(newNode);
+			}		
 		}
 		
 		this.numOfEntries++;
@@ -114,19 +116,23 @@ public class LinkedList <I extends Comparable <? super I>> implements ListInterf
 
 	@Override
 	public I get(int index) {
-		if ((index <= this.numOfEntries) && (index >= 0)){
-			LinkedListNode<I> curNode = head;
-			int curIndex = 0;
+		
+		I getObj = null;
+		
+		if((index >= 0) && (index < this.numOfEntries)) {
+			LinkedListNode<I> currentNode = head;
+			int currentIndex = 0;
 			
-			while(curIndex < index) {
-				curNode = curNode.getNext();
-				curIndex++;
-				
+			while (currentIndex != index) {
+				currentNode = currentNode.getNext();
+				currentIndex++;
 			}
-			return curNode.getData();
 			
-		}else {
-		return null;}
+			getObj = currentNode.getData();
+		}
+		
+		return getObj;
+		
 	}
 
 	@Override
@@ -150,25 +156,32 @@ public class LinkedList <I extends Comparable <? super I>> implements ListInterf
 
 	@Override
 	public boolean remove(int index) {
-		// TODO Auto-generated method stub
-		if ((index <= this.numOfEntries) && (index >= 0)) {
-			
-			LinkedListNode<I> curNode = head;
-			LinkedListNode<I> previousNode = null;
-			int curIndex = 0;
-			
-			while(curIndex < index) {
-				previousNode = curNode;
-				curNode = curNode.getNext();
-				curIndex++;
+		boolean removed = false;
+		
+		if ((index >= 0) && (index < this.numOfEntries)) {
+			if (index == 0) {
+				// removing the head
+				head = head.getNext();
+			} else {
+				LinkedListNode<I> previousNode = null;
+				LinkedListNode<I> currentNode = head;
+				
+				for (int i = 0 ; i < index ; i++ ) {
+					previousNode = currentNode;
+					currentNode = currentNode.getNext();
 				}
-			previousNode.setNext(curNode.getNext());
+				
+				previousNode.setNext(currentNode.getNext());
+				
+				if (currentNode == tail) {
+					tail = previousNode;
+				}
+			}
+			
 			this.numOfEntries--;
-			
-			return true;
-		}else {
-			
-		return false;}
+		} 
+		
+		return removed;
 	}
 
 	@Override

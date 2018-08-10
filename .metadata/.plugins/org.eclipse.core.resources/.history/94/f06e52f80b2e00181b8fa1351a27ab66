@@ -1,4 +1,0 @@
-
-public class ArrayBasedStack implements StackInterface<E> {
-
-}

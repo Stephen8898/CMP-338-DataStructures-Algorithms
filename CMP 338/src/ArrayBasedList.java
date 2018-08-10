@@ -30,7 +30,7 @@ public class ArrayBasedList <I extends Comparable< ? super I >>implements ListIn
 	@Override
 	public void addSorted(I element) {
 		// TODO Auto-generated method stub
-		b.insertElementSorted( element);
+		b.insertElementSorted(element);
 	}
 
 	@Override

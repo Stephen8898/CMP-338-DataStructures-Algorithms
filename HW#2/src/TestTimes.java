@@ -13,7 +13,7 @@ public class TestTimes implements TestTimesInterface {
 		if (index < testTimes.length ) {
 			testTimes[index++] = runTime;
 		} else {
-			for(int i = 0; i< testTimes.length-1; i++) {
+			for(int i = 0; i < testTimes.length-1; i++) {
 				testTimes[i] = testTimes[i+1];
 			}
 			testTimes[9]= runTime;
